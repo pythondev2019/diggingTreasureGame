@@ -2,8 +2,8 @@
 This is the project for [python3 course](http://uneex.ru/LecturesCMC/PythonDevelopment2019) of faculty of computational mathematics and cybernetics of Lomonosov Moscow State University. 
 
 # Project members
-[John Kim](https://github.com/johnkim7)
-[Marina Vasilieva](https://github.com/vmmnnn)
+[John Kim](https://github.com/johnkim7)<br />
+[Marina Vasilieva](https://github.com/vmmnnn)<br />
 [Nikita Taras](https://github.com/name570)
 
 # diggingTreasureGame
