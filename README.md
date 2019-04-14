@@ -6,7 +6,6 @@ This is the project for [python3 course](http://uneex.ru/LecturesCMC/PythonDevel
 [Marina Vasilieva](https://github.com/vmmnnn)<br />
 [Nikita Taras](https://github.com/name570)
 
-# Description
-## diggingTreasureGame
+# diggingTreasureGame
 Reborn of Nokia's classic game in python3 with tkinter.
 [Youtube for more details](https://www.youtube.com/watch?v=iEt9xTWEzCo)
