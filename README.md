@@ -9,3 +9,6 @@ This is the project for [python3 course](http://uneex.ru/LecturesCMC/PythonDevel
 [John Kim](https://github.com/johnkim7)<br />
 [Marina Vasilieva](https://github.com/vmmnnn)<br />
 [Nikita Taras](https://github.com/name570)
+
+## Project GUI
+![interface](GUI.png)
