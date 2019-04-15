@@ -10,7 +10,7 @@ This is the project for [python3 course](http://uneex.ru/LecturesCMC/PythonDevel
 [Marina Vasilieva](https://github.com/vmmnnn)<br />
 [Nikita Taras](https://github.com/name570)
 
-## Project GUI
+## GUI
 ![interface](GUI.png)
 1. Progressbar (жизнь игрока)
 2. Label (жизнь игрока)
