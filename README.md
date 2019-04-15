@@ -1,5 +1,5 @@
 # diggingTreasureGame
-Reborn of Nokia's classic game in python3 with tkinter.
+Nokia's classic game in python3 with tkinter.
 [Youtube for more details](https://www.youtube.com/watch?v=iEt9xTWEzCo)
 
 ## Project purpose
