@@ -12,3 +12,12 @@ This is the project for [python3 course](http://uneex.ru/LecturesCMC/PythonDevel
 
 ## Project GUI
 ![interface](GUI.png)
+1. Progressbar (жизнь игрока)
+2. Label (жизнь игрока)
+3. Label (деньги игрока)
+4. Progressbar (деньги игрока
+5. Игровое поле: Grid
+6. Button для инструкции
+7. Button для "о проекте"
+8. Button pause
+9. Messagebox
