@@ -10,6 +10,7 @@ This is the project for [python3 course](http://uneex.ru/LecturesCMC/PythonDevel
 [Marina Vasilieva](https://github.com/vmmnnn)<br />
 [Nikita Taras](https://github.com/name570)
 
+## Project overview
 Игровой процесс: Игра состоит из нескольких уровней, на каждом уровне цель игрока
 набрать необходимое количество очков. При переходе с уровня на уровень очки не
 обнуляются, то есть если на первом уровне необходимо заработать 600 очков, то
