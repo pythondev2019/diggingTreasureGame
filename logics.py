@@ -5,15 +5,11 @@
 import random
 import math
 
-class Elem:
-    dirt='Dirt'
-    evildirt='Evil Dirt'
-    empty='Empty'
-    fire='Fire'
-    heart='Heart'
-    chunk=['Chunk1','Chunk2','Chunk3']
-    player='player'
-SALARY={Elem.chunk[0]:100, Elem.chunk[1]:200, Elem.chunk[2]:300}
+class GameOver(Exception):
+    def __str__(self):  return 'Game Over'
+
+class YouWin(Exception):
+    def __str__(self): return 'You Win'
 
 class Player:
     def __init__(self, game, y, x):
@@ -27,16 +23,30 @@ class Player:
         self.y = y
         self.x = x
 
-    def _digg(self, y, x):
-        if not (0 <= x < GX and 0 <= y < GY):
-            return
-        if self.game.g[y][x] == Elem.dirt:
-            self.game.g[y][x] = Elem.empty
-        elif self.game.g[y][x] == Elem.evildirt:
-            self.game.new_fire(y, x)
-
-class Command:
-    left='Moving Left'
-    right='Moving Right'
-    next='Digging Next'
-    down='Digging Down'
+class Game:
+    def __init__(self):
+        self.g=None
+        self.level=-1
+        self.cur=0
+        self.goal=0
+        self.fires=set()
+        self.player=Player(self,0,0)
+        self.fire_ticked=False
+        self.init_level(1)
+    
+    def init_level(self,level):
+        #init grid
+        self.g=[[Elem.dirt if random.random()>EVIL_PROB else Elem.evildirt for y in range(GX)] for x in range(GY)]
+        self.g[0][math.floor(GX/2)]=Elem.player
+        self.g[0][math.floor(GX/2)-1]=Elem.empty
+        self.g[0][math.floor(GX/2)+1]=Elem.empty
+        #put goods
+        available=[(y,x) for y in range(GY) for x in range(GX) if self.g[y][x]==Elem.dirt]
+        for y,x in random.sample(available,math.ceil(GX*GY*ELEM_PROB)):
+            self.g[y][x]=random.choice(Elem.chunk+[Elem.heart])
+        #init data
+        self.level=level
+        self.cur=0
+        self.goal=GOAL_OF_LEVEL(level)
+        self.fires=set()
+        self.player=Player(self,0,math.floor(GX/2))
