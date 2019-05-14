@@ -8,6 +8,7 @@ import logics
 cmds=queue.Queue()
 cellSize=32
 paused=False
+moneyBarText=StringVar()
 
 tk=Tk()
 tk.title('Digging Treasure')
@@ -30,7 +31,7 @@ hpbar=Progressbar(f,orient=HORIZONTAL,length=100,value=100,maximum=100,mode='det
 hpbar.grid(row=0,column=0)
 Label(f,text='Life').grid(row=0,column=1)
 Label(f).grid(row=0,column=2,sticky='we')
-Label(f,text='Money').grid(row=0,column=3)
+Label(f,textVariable=moneyBarText).grid(row=0,column=3)
 moneybar=Progressbar(f,orient=HORIZONTAL,length=80,value=0,maximum=1,mode='determinate')
 moneybar.grid(row=0,column=4)
 
