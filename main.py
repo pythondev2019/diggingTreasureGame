@@ -8,18 +8,21 @@ import logics
 cmds=queue.Queue()
 cellSize=32
 paused=False
-moneyBarText=StringVar()
+money = 0
+
+
 
 tk=Tk()
 tk.title('Digging Treasure')
 tk.resizable(False,False)
-
+moneyBarText = StringVar()
+moneyBarText.set("{}".format(money))
 def cmd(value):
     cmds.put(value)
 
 def pause():
     global paused
-    paused=not paused
+    paused = not paused
     pausebtn.state(['pressed' if paused else '!pressed'])
     pausebtn['text']='Resume' if paused else 'Pause'
 
@@ -31,8 +34,8 @@ hpbar=Progressbar(f,orient=HORIZONTAL,length=100,value=100,maximum=100,mode='det
 hpbar.grid(row=0,column=0)
 Label(f,text='Life').grid(row=0,column=1)
 Label(f).grid(row=0,column=2,sticky='we')
-Label(f,textVariable=moneyBarText).grid(row=0,column=3)
 moneybar=Progressbar(f,orient=HORIZONTAL,length=80,value=0,maximum=1,mode='determinate')
+Label(f,textvariable = moneyBarText).grid(row=0,column=3)
 moneybar.grid(row=0,column=4)
 
 canvas=Canvas(tk,width=10*cellSize,height=10*cellSize,bg='#770055')
