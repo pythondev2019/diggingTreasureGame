@@ -45,12 +45,12 @@ infof=Frame(tk)
 infof.grid(row=2,column=0,sticky='we')
 infof.columnconfigure(1,weight=1)
 
-pausebtn=Button(infof,text='Pause',width=8,command=pause)
-pausebtn.grid(row=0,column=0)
+pausebtn=Button(infof,text = 'Pause',width = 8,command = pause)
+pausebtn.grid(row = 0,column = 0)
 
-Label(infof).grid(row=0,column=1,sticky='we')
-Button(infof,text='Instructions',width=8,command=lambda:messagebox.showinfo('Instructions','instructions')).grid(row=0,column=2)
-Button(infof,text='About',width=8,command=lambda:messagebox.showinfo('About','about')).grid(row=0,column=3)
+Label(infof).grid(row = 0,column = 1,sticky = 'we')
+Button(infof,text = 'Instructions',width = 12,command = lambda:messagebox.showinfo('Instructions','instructions')).grid(row = 0,column = 2)
+Button(infof,text = 'About',width = 8,command = lambda:messagebox.showinfo('About','about')).grid(row=0,column=3)
 
 tk.bind_all('<Left>',lambda *_:cmd(logics.Command.left))
 tk.bind_all('<Right>',lambda *_:cmd(logics.Command.right))
