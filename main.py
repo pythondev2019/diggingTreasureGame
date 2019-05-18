@@ -8,18 +8,21 @@ import logics
 cmds=queue.Queue()
 cellSize=32
 paused=False
-moneyBarText=StringVar()
+money = 0
+
+
 
 tk=Tk()
 tk.title('Digging Treasure')
 tk.resizable(False,False)
-
+moneyBarText = StringVar()
+moneyBarText.set("{}".format(money))
 def cmd(value):
     cmds.put(value)
 
 def pause():
     global paused
-    paused=not paused
+    paused = not paused
     pausebtn.state(['pressed' if paused else '!pressed'])
     pausebtn['text']='Resume' if paused else 'Pause'
 
@@ -31,8 +34,8 @@ hpbar=Progressbar(f,orient=HORIZONTAL,length=100,value=100,maximum=100,mode='det
 hpbar.grid(row=0,column=0)
 Label(f,text='Life').grid(row=0,column=1)
 Label(f).grid(row=0,column=2,sticky='we')
-Label(f,textVariable=moneyBarText).grid(row=0,column=3)
 moneybar=Progressbar(f,orient=HORIZONTAL,length=80,value=0,maximum=1,mode='determinate')
+Label(f,textvariable = moneyBarText).grid(row=0,column=3)
 moneybar.grid(row=0,column=4)
 
 canvas=Canvas(tk,width=10*cellSize,height=10*cellSize,bg='#770055')
@@ -42,12 +45,12 @@ infof=Frame(tk)
 infof.grid(row=2,column=0,sticky='we')
 infof.columnconfigure(1,weight=1)
 
-pausebtn=Button(infof,text='Pause',width=8,command=pause)
-pausebtn.grid(row=0,column=0)
+pausebtn=Button(infof,text = 'Pause',width = 8,command = pause)
+pausebtn.grid(row = 0,column = 0)
 
-Label(infof).grid(row=0,column=1,sticky='we')
-Button(infof,text='Instructions',width=8,command=lambda:messagebox.showinfo('Instructions','instructions')).grid(row=0,column=2)
-Button(infof,text='About',width=8,command=lambda:messagebox.showinfo('About','about')).grid(row=0,column=3)
+Label(infof).grid(row = 0,column = 1,sticky = 'we')
+Button(infof,text = 'Instructions',width = 12,command = lambda:messagebox.showinfo('Instructions','instructions')).grid(row = 0,column = 2)
+Button(infof,text = 'About',width = 8,command = lambda:messagebox.showinfo('About','about')).grid(row=0,column=3)
 
 tk.bind_all('<Left>',lambda *_:cmd(logics.Command.left))
 tk.bind_all('<Right>',lambda *_:cmd(logics.Command.right))
