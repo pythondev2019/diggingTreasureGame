@@ -48,8 +48,9 @@ class Command:
 
 
 class Player:
-    def __init__(self, game, y, x):
-        self.name = "noname"
+    def __init__(self, game, y, x, name, total_score):
+
+        self.name = name
         self.password = ''
         self.life = 100
         self.life_restore = 0
@@ -59,6 +60,7 @@ class Player:
         self.game = game
         self.y = y
         self.x = x
+        self.total_score = total_score
 
     def hurt(self, value):
         if self.life_restore:
@@ -138,6 +140,12 @@ class Player:
             else:
                 raise RuntimeError('cant find right fire')
 
+    def set_name(self, name):
+        self.name = name
+
+    def add_total_score(self,score):
+        self.total_score += score
+
 
 class Fire:
     def __init__(self, game, y, x):
@@ -193,7 +201,7 @@ class Game:
         self.cur=0
         self.goal=0
         self.fires=set()
-        self.player=Player(self,0,0)
+        self.player=Player(self,0,0,'noname',0)
         self.fire_ticked=False
         self.init_level(1)
     
@@ -212,7 +220,7 @@ class Game:
         self.cur=0
         self.goal=GOAL_OF_LEVEL(level)
         self.fires=set()
-        self.player=Player(self,0,math.floor(GX/2))
+        self.player=Player(self,0,math.floor(GX/2), self.player.name, self.player.total_score)
 
     def tick_fire(self):
         for fire in sorted(self.fires, key=lambda this:this.y*GX+this.x):

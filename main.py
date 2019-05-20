@@ -5,8 +5,12 @@ from tkinter.ttk import *
 import time
 import queue
 import logics
+import main_menu
 import threading
 import os
+
+game = logics.Game()
+main_menu.main_menu(game.player)
 
 tk = Tk()
 tk.title('Digging Treasure')
@@ -21,9 +25,9 @@ borderSize=10
 tickTime=.4
 initLevel=1
 paused=False
-game = logics.Game()
 moneyBarText = StringVar()
 hudText = StringVar()
+
 
 dg=[[None for x in range(logics.GX)] for y in range(logics.GY)]
 onscreen=[[None for x in range(logics.GX)] for y in range(logics.GY)]
@@ -79,6 +83,8 @@ def game_controller():
         except logics.GameOver:
             show_hud('You lost')
             show_hud('Your level: %d'%game.level)
+            game.player.add_total_score(moneybar['value'])
+            main_menu.insert_or_update_result(game.player.name, game.player.total_score)
             init_level(initLevel)
             show_hud('level %d：$ %d'%(game.level,game.goal))
         except logics.YouWin:
@@ -114,6 +120,8 @@ def init_level(level):
     dg=[[None for x in range(logics.GX)] for y in range(logics.GY)]
     onscreen=[[None for x in range(logics.GX)] for y in range(logics.GY)]
     canvas.delete('all')
+    if level != initLevel:
+        game.player.add_total_score(moneybar['maximum'])
     game.init_level(level)
     canvas['scrollregion']=(-borderSize*cellSize,-borderSize*cellSize,(borderSize+logics.GX)*cellSize,(borderSize+logics.GY)*cellSize)
     moneybar['value']=0
@@ -122,6 +130,8 @@ def init_level(level):
 
 
 def end_game(tk):
+    game.player.add_total_score(moneybar['value'])
+    main_menu.insert_or_update_result(game.player.name, game.player.total_score)
     tk.destroy()
     os.abort()
 
@@ -129,6 +139,7 @@ def end_game(tk):
 f=Frame(tk)
 f.grid(row=0,column=0,sticky='we')
 f.columnconfigure(2,weight=1)
+
 
 hpbar=Progressbar(f,orient=HORIZONTAL,length=100,value=100,maximum=100,mode='determinate')
 hpbar.grid(row=0,column=0)
@@ -166,4 +177,6 @@ tk.bind_all('<Down>',lambda *_:cmd(logics.Command.down))
 tk.after(0,lambda *_:threading.Thread(target=game_controller).start())
 
 tk.protocol('WM_DELETE_WINDOW', lambda: end_game(tk))
+
+
 mainloop()
