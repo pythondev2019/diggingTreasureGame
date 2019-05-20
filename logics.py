@@ -6,6 +6,8 @@ import random
 import math
 
 
+ELEM_PROB = 0.1
+EVIL_PROB = 0.1
 RESTORE_TIME = 12
 GX = 23
 GY = 35
@@ -111,18 +113,18 @@ class Player:
             return False
         g_yx = self.game.g[y][x]
         if g_yx == Elem.empty:
-            self.go(self, x, y)
+            self.go(x, y)
             return True
         elif g_yx == Elem.heart:
             self.life = min(self.life + HEART_LIFE, 100)
-            self.go(self, x, y)
+            self.go(x, y)
             return  True
         elif g_yx in Elem.chunk:
             ind = self.game.g[y][x]
             self.game.cur += SALARY[ind]
             if self.game.cur >= self.game.goal:
                 raise YouWin()
-            self.go(self, x, y)
+            self.go(x, y)
             return True
         elif g_yx == Elem.fire:
             for fire in self.game.fires:
@@ -248,3 +250,4 @@ class Game:
             self.tick_fire()
         self.fire_ticked = not self.fire_ticked
         self.player.tick()
+
