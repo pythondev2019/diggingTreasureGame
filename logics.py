@@ -58,8 +58,8 @@ class Player:
         self.left = False
         self.command = ''
         self.game = game
-        self.y = y
         self.x = x
+        self.y = y
         self.total_score = total_score
 
     def hurt(self, value):
