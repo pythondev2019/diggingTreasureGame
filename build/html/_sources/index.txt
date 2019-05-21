@@ -1,0 +1,25 @@
+.. You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Добро пожаловать в документацию!
+================================
+
+
+Содержание:
+===========
+ 
+.. toctree::
+   :maxdepth: 2
+ 
+   struct.txt
+   main.txt
+   logic.txt
+   menu.txt
+
+Ссылки
+==================
+
+* :ref:`search`
+
+.. * :ref:`modindex`
+.. * :ref:`genindex`
