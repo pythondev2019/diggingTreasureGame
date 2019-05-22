@@ -143,7 +143,6 @@ class Player:
 
     def set_name(self, name):
         self.name = name
-        return self
 
     def add_total_score(self,score):
         self.total_score += score
@@ -197,25 +196,6 @@ class Fire:
 
 
 class Game:
-    """Tests for hurting, ending level and changing player name
-    >>> #Test for no hurting
-    >>> Game().player.hurt(0)
-    True
-    >>> #Test for killing player
-    >>> Game().player.hurt(100)
-    Traceback (most recent call last):
-    GameOver: Game Over
-    >>> #Test for changing name
-    >>> Game().player.set_name('Player').name
-    'Player'
-    >>> # Test for ending level
-    >>> game = Game()
-    >>> game.cur = 500
-    >>> game.g[1][1] = 'Chunk1'
-    >>> game.player._move(1,1)
-    Traceback (most recent call last):
-    YouWin: You Win
-    """
     def __init__(self):
         self.g=None
         self.level=-1
@@ -279,7 +259,3 @@ class Game:
             self.tick_fire()
         self.fire_ticked = not self.fire_ticked
         self.player.tick()
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
