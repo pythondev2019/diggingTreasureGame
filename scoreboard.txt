@@ -2,3 +2,4 @@ data1,0
 Marina,1700
 M,400
 name570,2200
+John,300
