@@ -58,6 +58,20 @@ This is the project for [python3 course](http://uneex.ru/LecturesCMC/PythonDevel
 
 Или же:
 
-*puthon tests.py -v*
+*python tests.py -v*
  
 для вывода выполнения каждого теста и его результатов.
+
+## Запуск игры
+
+Для начала выполните команду:
+
+*git clone https://github.com/pythondev2019/diggingTreasureGame*
+
+После пройдите в директорию 
+
+*cd diggingTreasureGame*
+
+Запуск программы осуществляется при помощи команды:
+
+*python main.py*
