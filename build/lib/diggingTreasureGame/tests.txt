@@ -1,0 +1,81 @@
+Tests for hurting, ending level and changing player name
+
+    >>> from logics import *
+
+Test for no hurting
+    >>> Game().player.hurt(0)
+    True
+
+Test for killing player
+    >>> Game().player.hurt(100)
+    Traceback (most recent call last):
+    logics.GameOver: Game Over
+
+
+Test for digging dirt
+    >>> game = Game()
+    >>> game.g[0][1] = Elem.dirt
+    >>> game.player._digg(0,1)
+    >>> game.g[0][1]
+    'Empty'
+
+Test for digging evil dirt
+    >>> game = Game()
+    >>> game.g[1][0] = Elem.evildirt
+    >>> game.player._digg(1,0)
+    >>> game.g[1][0]
+    'Fire'
+
+Test for moving into Emptyness
+    >>> game = Game()
+    >>> game.g[0][1] = Elem.empty
+    >>> game.player._move(0,1)
+    True
+    >>> game.player.y
+    0
+    >>> game.player.x
+    1
+
+Test for moving into aid kit (heart)
+    >>> game = Game()
+    >>> game.player.life = 80
+    >>> game.g[0][1] = Elem.heart
+    >>> game.player._move(0,1)
+    True
+    >>> game.player.y
+    0
+    >>> game.player.x
+    1
+    >>> game.player.life
+    100
+
+Test for move and ending level
+    >>> game = Game()
+    >>> game.cur = 500
+    >>> game.g[1][1] = 'Chunk1'
+    >>> game.player._move(1,1)
+    Traceback (most recent call last):
+    logics.YouWin: You Win
+
+Test for changing name
+    >>> game = Game()
+    >>> game.player.set_name('Player')
+    >>> game.player.name
+    'Player'
+
+Test for adding score
+    >>> game = Game()
+    >>> game.player.total_score = 500
+    >>> game.player.add_total_score(500)
+    >>> game.player.total_score
+    1000
+
+Test for tick fire and burn down Chunk and setting fire into position
+    >>> game = Game()
+    >>> game.new_fire(1,0)
+    >>> game.g[1][0]
+    'Fire'
+    >>> game.g[2][0] = 'Chunk1'
+    >>> game.tick_fire()
+    >>> game.g[2][0]
+    'Fire'

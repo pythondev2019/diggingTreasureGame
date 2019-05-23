@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.py
+diggingTreasureGame/__init__.py
+diggingTreasureGame/logics.py
+diggingTreasureGame/main.py
+diggingTreasureGame/main_menu.py
+diggingTreasureGame/tests.py
+diggingTreasureGame.egg-info/PKG-INFO
+diggingTreasureGame.egg-info/SOURCES.txt
+diggingTreasureGame.egg-info/dependency_links.txt
+diggingTreasureGame.egg-info/top_level.txt
