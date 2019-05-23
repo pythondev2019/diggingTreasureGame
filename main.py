@@ -1,4 +1,5 @@
 # coding=utf-8
+import gettext
 import os
 import queue
 import threading
@@ -9,13 +10,11 @@ from tkinter.ttk import *
 
 import logics
 import main_menu
-import gettext
 
 lang1 = gettext.translation('ru', localedir=os.getcwd() + '\\locale', languages=['ru'])
 
 lang1.install()
 _ = lang1.gettext
-
 
 game = logics.Game()
 lang = main_menu.main_menu(game.player)
@@ -150,6 +149,7 @@ def end_game(tk):
     tk.destroy()
     os.abort()
 
+
 f = Frame(tk)
 f.grid(row=0, column=0, sticky='we')
 f.columnconfigure(2, weight=1)
@@ -173,19 +173,21 @@ infof.columnconfigure(1, weight=1)
 pausebtn = Button(infof, text=_('Pause'), width=12, command=pause)
 pausebtn.grid(row=0, column=0)
 
-
 instructionbtn = Button(infof, text=_('Instructions'), width=12,
-                        command=lambda: messagebox.showinfo(_('Instructions'),_('This is DigTreasure game:\n') \
-                                                            + _('1) To complete the level you have to score as much money as you can see in the right top corner\n') \
+                        command=lambda: messagebox.showinfo(_('Instructions'), _('This is DigTreasure game:\n') \
+                                                            + _(
+                            '1) To complete the level you have to score as much money as you can see in the right top corner\n') \
                                                             + _('2) Fire is your emeny\n') \
                                                             + _('3) To increase your health use aid kid\n') \
-                                                            + _('4) Use Right and Left button to navigate and Down button to dig\n') \
+                                                            + _(
+                            '4) Use Right and Left button to navigate and Down button to dig\n') \
                                                             + _('Good luck and have fun!\n')))
 instructionbtn.grid(row=0, column=2)
 
 aboutbtn = Button(infof, text=_('About'), width=8,
                   command=lambda: messagebox.showinfo(_('About'), _('This game was created by:\n') \
-                                                      + _('johnkim7\n vmmnnn \n name570\n for fun and as a project for python course')))
+                                                      + _(
+                      'johnkim7\n vmmnnn \n name570\n for fun and as a project for python course')))
 aboutbtn.grid(row=0, column=3)
 
 tk.bind_all('<Left>', lambda *_: cmd(logics.Command.left))

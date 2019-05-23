@@ -1,13 +1,13 @@
-import operator
 import gettext
+import operator
 import os
-
 from tkinter import *
 from tkinter import messagebox
 
 lang = 'Rus'
-def main_menu(player):
 
+
+def main_menu(player):
     root = Tk()
     root.title(_("Menu"))
 
@@ -33,16 +33,17 @@ def main_menu(player):
     button_frame = Frame(frame_image)
     button_frame.grid(row=3, column=0, columnspan=1)
 
-    new_game_button = Button(button_frame, text=_('New Game'), width=9, bg="green", font=("Helvetica", 8, "bold italic"),
+    new_game_button = Button(button_frame, text=_('New Game'), width=9, bg="green",
+                             font=("Helvetica", 8, "bold italic"),
                              fg="white", command=lambda: new_game(root, name.get()))
     new_game_button.grid(row=0, column=0)
 
     view_top_button = Button(button_frame, text=_('View top'), width=9, bg="blue", font=("Helvetica", 8, "italic"),
-                             fg="white",command = load_top_from_file)
+                             fg="white", command=load_top_from_file)
     view_top_button.grid(row=0, column=1)
 
     lang_button = Button(button_frame, text=_('Eng'), width=8, bg="red", font=("Helvetica", 8, "italic"), fg="white",
-                         command = lambda: switch_language(root, player))
+                         command=lambda: switch_language(root, player))
     lang_button.grid(row=0, column=2)
 
     root.protocol('WM_DELETE_WINDOW', lambda: exit_menu(root))
@@ -50,6 +51,7 @@ def main_menu(player):
     player.set_name(name.get())
 
     return lang
+
 
 def new_game(root, name):
     if name == "":
@@ -121,6 +123,7 @@ def insert_or_update_result(name, score):
     for i in top_players:
         file.write(i + ',' + str(top_players[i]) + '\n')
     file.close()
+
 
 def switch_language(root, player):
     global lang
