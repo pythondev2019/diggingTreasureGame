@@ -5,3 +5,7 @@ diggingTreasureGame.egg-info/SOURCES.txt
 diggingTreasureGame.egg-info/dependency_links.txt
 diggingTreasureGame.egg-info/top_level.txt
 package/__init__.py
+package/logics.py
+package/main.py
+package/main_menu.py
+package/tests.py
