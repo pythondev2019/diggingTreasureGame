@@ -1,0 +1,7 @@
+README.md
+setup.py
+diggingTreasureGame.egg-info/PKG-INFO
+diggingTreasureGame.egg-info/SOURCES.txt
+diggingTreasureGame.egg-info/dependency_links.txt
+diggingTreasureGame.egg-info/top_level.txt
+package/__init__.py

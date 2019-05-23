@@ -1,0 +1,76 @@
+Metadata-Version: 2.1
+Name: diggingTreasureGame
+Version: 0.0.1
+Summary: Python3 project for cmc msu course
+Home-page: https://github.com/pythondev2019/diggingTreasureGame
+Author: Python3 msu cmc course
+Author-email: jungmyung27@gmail.com
+License: UNKNOWN
+Description: # diggingTreasureGame
+        Nokia's classic game in python3 with tkinter.
+        [Youtube for more details](https://www.youtube.com/watch?v=iEt9xTWEzCo)
+        
+        ## Project purpose
+        This is the project for [python3 course](http://uneex.ru/LecturesCMC/PythonDevelopment2019) of faculty of computational mathematics and cybernetics of Lomonosov Moscow State University. 
+        
+        ## Project members
+        [John Kim](https://github.com/johnkim7)<br />
+        [Marina Vasilieva](https://github.com/vmmnnn)<br />
+        [Nikita Taras](https://github.com/name570)
+        
+        ## Project overview
+        Игровой процесс: Игра состоит из нескольких уровней, на каждом уровне цель игрока
+        набрать необходимое количество очков. При переходе с уровня на уровень очки сохраняются у игрока в очках, 
+        которые будут добавлены в таблицу почета, однако новый уровень будет начинаться с 0 очков.
+        
+        Ход игрока: Игрок разрушает один из нижних от себя блоков(слева или справа), и если
+        над разрушенным блоком имелся другой блок, он также автоматически разрушается.
+        
+        Огни: Огни являются источниками урона, они инициализируются в случайных блоках
+        поля, и не видны игроку, пока блок не будет разрушен. Как только блок разрушен,
+        огонь начинает догонять игрока и уничтожается только при прохождении уровня
+        игроком, или когда огонь догнал игрока и нанес ему урон.
+        
+        Аптечки: аптечки инициализируются в случайных полях поля, видны игроку и
+        являются источниками здоровья игрока.
+        
+        Монеты: являются сокровищами. Существует 3 вида монет - 1,2,3 - обозначающие
+        100,200 и 300 очков соответственно.
+        
+        Интерфейс: планируется реализовать - доску почета, паузу в игре, и кнопку по
+        нажатии на которую появляется окно с правилами игры.
+        
+        Меню игры: при включении приложения будет появляться поле ввода имени игрока и кнопки для начала игры и просмотра доски 
+        почета. После нажатия на кнопку начала игры будет запускаться сама игра.
+        
+        
+        ## GUI
+        ![interface](GUI.png)
+        1. Progressbar (жизнь игрока)
+        2. Label (жизнь игрока)
+        3. Label (деньги игрока)
+        4. Progressbar (деньги игрока)
+        5. Игровое поле: Canvas Grid
+        6. Button для инструкции
+        7. Button для "о проекте"
+        8. Button pause
+        9. Messagebox
+        
+        
+        ## Tests
+        Для игры написанны тесты,при помощи doctest, хранящиеся в файле tests.txt. Для запуска тестов можно использовать:
+        
+        *python tests.py* 
+        
+        выведены будут только тесты, которые не прошли валидацию.
+        
+        Или же:
+        
+        *puthon tests.py -v*
+         
+        для вывода выполнения каждого теста и его результатов.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
