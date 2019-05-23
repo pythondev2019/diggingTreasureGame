@@ -1,17 +1,15 @@
 import operator
+import gettext
+import os
+
 from tkinter import *
 from tkinter import messagebox
 
-lang = 'Eng'
-english = ['Eng', 'Menu', 'Please, input your name:', 'Welcome to Digging Treasure game!', 'New Game', 'View top',
-           'Top 10 best players', 'Invalid name', 'Name must be entered']
-russian = ['Рус', 'Меню', 'Please, input your name:', 'Добро пожаловать в игру спрятанные сокровища!', 'Новая игра',
-           'Посмотреть лучших', 'Топ 10 лучших игроков', 'Неверное имя', 'Имя должно быть введено']
-
-
+lang = 'Rus'
 def main_menu(player):
+
     root = Tk()
-    root.title("Menu")
+    root.title(_("Menu"))
 
     frame_image = Frame(root)
     frame_image.grid(row=0, column=0, rowspan=8)
@@ -25,8 +23,8 @@ def main_menu(player):
     frame_input.grid(row=0, column=0, rowspan=3)
     name = StringVar()
     name_entry = Entry(frame_input, textvariable=name)
-    name_label = Label(frame_input, text='Please, input your name:', font=("Helvetica", 10), bg="brown", fg="white")
-    label = Label(frame_input, text='Welcome to Digging Treasure game!', font=("Helvetica", 11, "bold italic"),
+    name_label = Label(frame_input, text=_('Please, input your name:'), font=("Helvetica", 10), bg="brown", fg="white")
+    label = Label(frame_input, text=_('Welcome to Digging Treasure game!'), font=("Helvetica", 11, "bold italic"),
                   bg="brown", fg="white")
     name_entry.grid(row=2, column=0, sticky=E + W + S + N)
     name_label.grid(row=1, column=0, sticky=E + W + S + N)
@@ -35,36 +33,27 @@ def main_menu(player):
     button_frame = Frame(frame_image)
     button_frame.grid(row=3, column=0, columnspan=1)
 
-    new_game_button = Button(button_frame, text='New Game', width=8, bg="green", font=("Helvetica", 8, "bold italic"),
-                             fg="white",
-                             command=lambda: new_game(root, name.get(), russian if lang == 'Eng' else english))
+    new_game_button = Button(button_frame, text=_('New Game'), width=9, bg="green", font=("Helvetica", 8, "bold italic"),
+                             fg="white", command=lambda: new_game(root, name.get()))
     new_game_button.grid(row=0, column=0)
 
-    view_top_button = Button(button_frame, text='View top', width=8, bg="blue", font=("Helvetica", 8, "italic"),
-                             fg="white", command=lambda: load_top_from_file(russian if lang == 'Eng' else english))
+    view_top_button = Button(button_frame, text=_('View top'), width=9, bg="blue", font=("Helvetica", 8, "italic"),
+                             fg="white",command = load_top_from_file)
     view_top_button.grid(row=0, column=1)
 
-    lang_button = Button(button_frame, text='Eng', width=8, bg="red", font=("Helvetica", 8, "italic"), fg="white",
-                         command=lambda: change_language(russian if lang == 'Eng' else english))
+    lang_button = Button(button_frame, text=_('Eng'), width=8, bg="red", font=("Helvetica", 8, "italic"), fg="white",
+                         command = lambda: switch_language(root, player))
     lang_button.grid(row=0, column=2)
 
     root.protocol('WM_DELETE_WINDOW', lambda: exit_menu(root))
     root.mainloop()
     player.set_name(name.get())
 
+    return lang
 
-def change_language(language):
-    lang_button.config(text=language[0])
-    root.title(language[1])
-    name_label.config(text=language[2])
-    label.config(text=language[3])
-    new_game_button.title(language[4])
-    view_top_button.config(text=language[5])
-
-
-def new_game(root, name, language):
+def new_game(root, name):
     if name == "":
-        messagebox.showinfo(language[7], language[8])
+        messagebox.showinfo(_('Invalid name'), _('Name must be entered'))
     else:
         root.destroy()
     return
@@ -75,7 +64,7 @@ def exit_menu(root):
     exit(0)
 
 
-def load_top_from_file(language):
+def load_top_from_file():
     top_players = {}
     file = open("scoreboard.txt", 'r')
     for line in file:
@@ -88,7 +77,7 @@ def load_top_from_file(language):
     file.close()
 
     top = Tk()
-    top.title(language[6])
+    top.title(_('Top 10 best players'))
     top.geometry("600x300")
 
     frame = Frame(top)
@@ -132,3 +121,20 @@ def insert_or_update_result(name, score):
     for i in top_players:
         file.write(i + ',' + str(top_players[i]) + '\n')
     file.close()
+
+def switch_language(root, player):
+    global lang
+    if lang == 'Rus':
+        lang = 'Eng'
+        root.destroy()
+        lang1 = gettext.translation('en', localedir=os.getcwd() + '\\locale', languages=['en'])
+        lang1.install()
+        _ = lang1.gettext
+        main_menu(player)
+    else:
+        lang = 'Rus'
+        root.destroy()
+        lang1 = gettext.translation('ru', localedir=os.getcwd() + '\\locale', languages=['ru'])
+        lang1.install()
+        _ = lang1.gettext
+        main_menu(player)

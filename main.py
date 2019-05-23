@@ -9,16 +9,24 @@ from tkinter.ttk import *
 
 import logics
 import main_menu
+import gettext
 
-lang = 'Eng'
-english = ['Eng', 'Digging Treasure', 'Resume', 'Pause', 'Instructions', 'About']
-russian = ['Рус', 'Спрятанные сокровища', 'Продолжать', 'Пауза', 'Инструкция', 'О проекте']
+lang1 = gettext.translation('ru', localedir=os.getcwd() + '\\locale', languages=['ru'])
+
+lang1.install()
+_ = lang1.gettext
+
 
 game = logics.Game()
-main_menu.main_menu(game.player)
+lang = main_menu.main_menu(game.player)
+
+if lang == 'Eng':
+    lang1 = gettext.translation('en', localedir=os.getcwd() + '\\locale', languages=['en'])
+    lang1.install()
+    _ = lang1.gettext
 
 tk = Tk()
-tk.title('Digging Treasure')
+tk.title(_('Digging Treasure'))
 tk.resizable(False, False)
 
 cmds = queue.Queue()
@@ -50,14 +58,6 @@ player = {
 }
 
 
-def change_language(language):
-    langbtn.config(text=language[0])
-    tk.title(language[1])
-    pausebtn.config(text=(language[2] if paused else language[3]))
-    instructionbtn.config(text=language[4])
-    aboutbtn.config(text=language[5])
-
-
 def cmd(value):
     cmds.put(value)
 
@@ -73,7 +73,7 @@ def pause():
     global paused
     paused = not paused
     pausebtn.state(['pressed' if paused else '!pressed'])
-    pausebtn['text'] = 'Resume' if paused else 'Pause'
+    pausebtn['text'] = _('Resume') if paused else _('Pause')
 
 
 def game_controller():
@@ -150,14 +150,13 @@ def end_game(tk):
     tk.destroy()
     os.abort()
 
-
 f = Frame(tk)
 f.grid(row=0, column=0, sticky='we')
 f.columnconfigure(2, weight=1)
 
 hpbar = Progressbar(f, orient=HORIZONTAL, length=100, value=100, maximum=100, mode='determinate')
 hpbar.grid(row=0, column=0)
-Label(f, text='Life').grid(row=0, column=1)
+Label(f, text=_('Life')).grid(row=0, column=1)
 Label(f).grid(row=0, column=2, sticky='we')
 moneybar = Progressbar(f, orient=HORIZONTAL, length=80, value=0, maximum=1, mode='determinate')
 Label(f, textvariable=moneyBarText).grid(row=0, column=3)
@@ -171,24 +170,22 @@ infof = Frame(tk)
 infof.grid(row=2, column=0, sticky='we')
 infof.columnconfigure(1, weight=1)
 
-pausebtn = Button(infof, text='Pause', width=8, command=pause)
+pausebtn = Button(infof, text=_('Pause'), width=12, command=pause)
 pausebtn.grid(row=0, column=0)
-langbtn = Button(infof, text='Eng', width=8, command=lambda: change_language(russian if lang == 'Eng' else english))
-langbtn.grid(row=0, column=1)
 
-Label(infof).grid(row=0, column=1, sticky='we')
-instructionbtn = Button(infof, text='Instructions', width=12,
-                        command=lambda: messagebox.showinfo('Instructions', 'This is DigTreasure game:\n' \
-                                                            + '1) To complete the level you have to score as much money as you can see in the right top corner\n' \
-                                                            + '2) Fire is your emeny\n' \
-                                                            + '3) To increase your health use aid kid\n' \
-                                                            + '4) Use Right and Left button to navigate and Down button to dig\n' \
-                                                            + 'Good luck and have fun!\n'))
+
+instructionbtn = Button(infof, text=_('Instructions'), width=12,
+                        command=lambda: messagebox.showinfo(_('Instructions'),_('This is DigTreasure game:\n') \
+                                                            + _('1) To complete the level you have to score as much money as you can see in the right top corner\n') \
+                                                            + _('2) Fire is your emeny\n') \
+                                                            + _('3) To increase your health use aid kid\n') \
+                                                            + _('4) Use Right and Left button to navigate and Down button to dig\n') \
+                                                            + _('Good luck and have fun!\n')))
 instructionbtn.grid(row=0, column=2)
 
-aboutbtn = Button(infof, text='About', width=8,
-                  command=lambda: messagebox.showinfo('About', 'This game was created by:\n' \
-                                                      + 'johnkim7\n vmmnnn \n name570\n for fun and as a project for python course'))
+aboutbtn = Button(infof, text=_('About'), width=8,
+                  command=lambda: messagebox.showinfo(_('About'), _('This game was created by:\n') \
+                                                      + _('johnkim7\n vmmnnn \n name570\n for fun and as a project for python course')))
 aboutbtn.grid(row=0, column=3)
 
 tk.bind_all('<Left>', lambda *_: cmd(logics.Command.left))
