@@ -1,4 +1,0 @@
-main_menu.py
-============
-
-Описание main_menu.py
