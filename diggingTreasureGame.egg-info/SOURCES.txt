@@ -4,8 +4,10 @@ __init__.py
 logics.py
 main.py
 main_menu.py
+scoreboard.txt
 setup.py
 tests.py
+tests.txt
 diggingTreasureGame.egg-info/PKG-INFO
 diggingTreasureGame.egg-info/SOURCES.txt
 diggingTreasureGame.egg-info/dependency_links.txt

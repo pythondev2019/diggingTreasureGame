@@ -7,3 +7,4 @@ include locale/ru/LC_MESSAGES/ru.mo
 include locale/ru/LC_MESSAGES/ru.po
 
 include ./*.py
+include ./*.txt
