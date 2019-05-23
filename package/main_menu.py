@@ -130,14 +130,14 @@ def switch_language(root, player):
     if lang == 'Rus':
         lang = 'Eng'
         root.destroy()
-        lang1 = gettext.translation('en', localedir=os.getcwd() + '\\locale', languages=['en'])
+        lang1 = gettext.translation('en', localedir=os.getcwd() + '/locale', languages=['en'])
         lang1.install()
         _ = lang1.gettext
         main_menu(player)
     else:
         lang = 'Rus'
         root.destroy()
-        lang1 = gettext.translation('ru', localedir=os.getcwd() + '\\locale', languages=['ru'])
+        lang1 = gettext.translation('ru', localedir=os.getcwd() + '/locale', languages=['ru'])
         lang1.install()
         _ = lang1.gettext
         main_menu(player)
