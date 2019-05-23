@@ -8,7 +8,8 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter.ttk import *
 
-from package import logics, main_menu
+import main_menu
+import logics
 
 lang1 = gettext.translation('ru', localedir=os.getcwd() + '.'
                                                           '/locale', languages=['ru'])

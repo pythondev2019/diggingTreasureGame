@@ -1,7 +1,6 @@
 import setuptools
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+
 
 setuptools.setup(
     name="diggingTreasureGame",
@@ -9,7 +8,6 @@ setuptools.setup(
     author="Python3 msu cmc course",
     author_email="jungmyung27@gmail.com",
     description="Python3 project for cmc msu course",
-    long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/pythondev2019/diggingTreasureGame",
     packages=setuptools.find_packages(),
@@ -18,4 +16,5 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    include_package_data=True
 )
