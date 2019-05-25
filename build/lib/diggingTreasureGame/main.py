@@ -8,11 +8,10 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter.ttk import *
 
-import main_menu
 import logics
+import main_menu
 
-lang1 = gettext.translation('ru', localedir=os.getcwd() + '.'
-                                                          '/locale', languages=['ru'])
+lang1 = gettext.translation('ru', localedir=os.getcwd() + '/locale', languages=['ru'])
 
 lang1.install()
 _ = lang1.gettext
@@ -21,7 +20,7 @@ game = logics.Game()
 lang = main_menu.main_menu(game.player)
 
 if lang == 'Eng':
-    lang1 = gettext.translation('en', localedir=os.getcwd() + './locale', languages=['en'])
+    lang1 = gettext.translation('en', localedir=os.getcwd() + '/locale', languages=['en'])
     lang1.install()
     _ = lang1.gettext
 
